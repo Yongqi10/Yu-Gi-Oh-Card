@@ -1,13 +1,15 @@
-import React from 'react';
-import Card from '../Components/Card';
-import Search from '../Components/Search'
+import React, { useState } from "react";
+import Card from "../Components/Card";
+import Search from "../Components/Search";
 function HomePage() {
-    return (
+  const [input, setInput] = useState("");
+
+  return (
     <div>
-        <Search/>
-        <Card/>
+      <Search setInput={setInput} />
+      <Card input={input} />
     </div>
-    );
+  );
 }
 
 export default HomePage;
