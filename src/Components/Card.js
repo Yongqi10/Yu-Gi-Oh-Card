@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function Card(props) {
   const input = props.input;
+  const SearchType = props.SearchType;
   const [card, setCard] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -14,7 +15,15 @@ function Card(props) {
         typeName =
           "https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Sky Striker";
       } else {
-        typeName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${input}`;
+
+        if(SearchType === "Type")
+        {
+          typeName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${input}`;
+        }
+        else
+        {
+          typeName = `https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${input}`;
+        }
       }
 
       const response = await fetch(typeName);
@@ -31,9 +40,11 @@ function Card(props) {
     }
   };
 
+
   useEffect(() => {
     getCard();
   }, [input]);
+
   console.log(card);
 
   return (
